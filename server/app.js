@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const PORT = 5005;
 const students = require('./students.json')
+const cohortsData = require("./cohorts.json")
 
 const app = express();
 
@@ -17,6 +18,10 @@ app.get('/api/students', (req, res) => {
 
 })
 
+
+app.get('/api/cohorts', (req, res) => {
+  res.json(cohortsData)
+})
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
