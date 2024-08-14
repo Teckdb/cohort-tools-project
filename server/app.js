@@ -3,10 +3,25 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const cors = require('cors')
 const PORT = 5005;
-const students = require('./students.json')
-const cohortsData = require("./cohorts.json")
+
+const mongoose = require("mongoose")
+
+const databaseName = 'cohort-tools-api'
+
+const MONGO_URI = `mongodb://127.0.0.1:27017/${databaseName}`;
+
+mongoose
+  .connect(MONGO_URI)
+  .then((x) => {
+    const dbName = x.connections[0].name;
+    console.log(`Connected to Mongo! Database name: "${dbName}"`);
+  })
+  .catch((err) => {
+    console.error("Error connecting to mongo: ", err);
+  });
 
 const app = express();
+
 
 
 app.use(express.json());
