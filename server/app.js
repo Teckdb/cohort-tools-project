@@ -1,7 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
-const cors = require('cors')
 const PORT = 5005;
 
 const mongoose = require("mongoose")
@@ -23,18 +22,16 @@ mongoose
 const app = express();
 
 
-
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors({
-  origin: ['http://localhost:5173']
-}))
 
 app.get('/api/students', (req, res) => {
   res.json(students)
+
 })
+
 
 app.get('/api/cohorts', (req, res) => {
   res.json(cohortsData)
